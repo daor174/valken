@@ -1,0 +1,66 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Aug  2 12:38:26 2021
+
+@author: Inso
+
+PROBLEMA 4 - Manejo de strings
+
+Cierto cantante escribe sus canciones y las envía a un músico para que les agregue la partitura, pero, 
+para evitar que alguien indebido se entere de la letra de su canción, cada frase la envía usando dos frases (strings). 
+En la frase 1 está la estructura verdadera de la frase, pero alguna palabras han sido cambiadas por otras falsas. 
+En la frase 2 están las verdaderas palabras que fueron cambiadas. 
+ 
+Usted debe construir un programa Python que permita al músico obtener las frases correctas de la letra de la canción. 
+ 
+Para ello, su programa debe leer las dos frases completas (leerlas como dos strings) y entregar la frase verdadera, mostrándola. 
+ 
+Reglas:
+-	Cada primera frase contiene solo letras mayúsculas (del alfabeto inglés más la Ñ) y espacio en blanco. Siempre va terminado con un punto.
+-	La segunda frase contiene palabras sueltas separadas por espacio en blanco (también termina con un punto).
+-	En la primera frase existen algunas palabras no correctas. Estas palabras se identifican porque no contienen ninguna vocal (solo tienen consonantes).
+    Para la corrección, se debe buscar la verdadera palabra en la segunda frase, y se ubica porque tiene el mismo número de caracteres.
+    NO existen varias palabras transformadas (en la primera frase) que tengan el mismo número de caracteres. En la segunda frase pueden haber palabras de más. 
+
+EJEMPLO: 
+Frase 1: TR DEJES QUE TWZXBC WYK SUEÑOS AL LHFRT QUE YRFGHVLZ MAS PQZC MAS CERCA ESTA EL CIELO. 
+
+Frase 2:  NO AMAS IQUIQUE CAIGAN TUS MIENTRAS SUELO. 
+
+Verdadera frase:  NO DEJES QUE CAIGAN TUS SUEÑOS AL SUELO QUE MIENTRAS MAS AMAS MAS CERCA ESTA EL CIELO. 
+
+Se pide realizar un programa en Python que lea dos Strings (las dos frases) y obtenga los siguientes resultados:
+-	Cantidad de palabras de la primera frase (en el ejemplo 17). 
+-	Cantidad de palabras de la primera frase que contienen solo consonantes (en el ejemplo 6).
+-	Palabras incorrectas de la primera frase (las que solo contienen consonantes). ¡Escribirlas! (En el ejemplo, TR  TWZXBC  WYK  LHFRT  YRFGHVLZ  PQZC). 
+-	Verdadera frase (la letra de la canción). (En el ejemplo: NO DEJES QUE CAIGAN TUS SUEÑOS AL SUELO QUE MIENTRAS MAS AMAS MAS CERCA ESTA EL CIELO).
+ 
+
+"""
+
+#frase1 = input()
+#frase2 = input()
+frase1  = 'TR DEJES QUE TWZXBC WYK SUEÑOS AL LHFRT QUE YRFGHVLZ MAS PQZC MAS CERCA ESTA EL CIELO.'
+frase2  = 'NO AMAS IQUIQUE CAIGAN TUS MIENTRAS SUELO.'
+frase3  = ''
+
+frase1 = frase1[0:len(frase1)-1]#sinpunto
+frase2 = frase2[0:len(frase2)-1]#sinpunto
+
+frase1s = frase1.split(' ')
+frase2s = frase2.split(' ')
+
+#verificar si no hay vocales en cada palabra de frase1 , de no tener comparar y escribir la correcta.
+
+for i in range(len(frase1s)):
+    
+    if 'A' in frase1s[i] or 'E' in frase1s[i] or 'I' in frase1s[i] or 'O' in frase1s[i] or 'U' in frase1s[i]:
+        frase3 = frase3 + frase1s[i] + ' '
+    else:
+        for j in range(len(frase2s)):
+            if len(frase1s[i]) == len(frase2s[j]):
+                frase3 = frase3 + frase2s[j] + ' '
+
+frase3 = frase3[0:len(frase3)-1] + '.' 
+print(frase3)
+input()
